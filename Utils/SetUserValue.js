@@ -1,16 +1,43 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import GetUserValue from "./GetUserValue";
 
-const GetUserValue = async (value) => {
-    try {
-        const jsonValue = JSON.stringify(value)
-        await AsyncStorage.setItem('userNotes', jsonValue)
+const SetUserValue = async (value) => {
+  try {
+    const time = new Date();
 
-        console.log("save")
+    const allNotes = await GetUserValue();
 
-    } catch (error) {
-        // Error saving data
-        console.log("error for save ",error)
+    if (allNotes === null) {
+      // when old notes not found
+      const obj = {
+        userValue: value,
+        id: Math.floor(100000000 + Math.random() * 900000000),
+        time: time,
+      };
+
+      const payload = [obj];
+
+      const jsonValue = JSON.stringify(payload);
+      await AsyncStorage.setItem("userNotes", jsonValue);
+    } else {
+      // when notes found
+      const obj = {
+        userValue: value,
+        id: Math.floor(100000000 + Math.random() * 900000000),
+        time: time,
+      };
+
+      const payload = [obj, ...allNotes];
+
+      const jsonValue = JSON.stringify(payload);
+      await AsyncStorage.setItem("userNotes", jsonValue);
     }
-}
 
-export default GetUserValue
+    console.log("save");
+  } catch (error) {
+    // Error saving data
+    console.log("error for save ", error);
+  }
+};
+
+export default SetUserValue;

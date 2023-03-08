@@ -24,7 +24,7 @@ import {CommonActions} from "@react-navigation/native";
 const {convert} = require('html-to-text');
 
 
-const AddNotes = ({navigation, route}) => {
+const AddNotes2 = ({navigation, route}) => {
 
 
     // ? context state
@@ -302,4 +302,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default AddNotes
+export default AddNotes2
