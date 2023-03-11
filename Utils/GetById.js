@@ -3,18 +3,18 @@ import GetUserValue from "./GetUserValue";
 
 const GetById = async (props) => {
 
-    try {
+	try {
 
-        const findAllNotes = await GetUserValue()
+		const findAllNotes = await GetUserValue()
 
-        const findOne =  findAllNotes.find( note => note.id == props )
+		const findOne = findAllNotes.find(note => note.id == props)
 
 
-        return findOne
+		return findOne
 
-    }catch (e) {
-        console.log(e)
-    }
+	} catch (e) {
+		console.log(e)
+	}
 
 }
 

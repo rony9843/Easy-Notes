@@ -2,23 +2,27 @@ import { convert } from "html-to-text";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import IonIcon from "react-native-vector-icons/Ionicons";
 
-const NoteCard = ({ data, removeItem }) => {
+const NoteCard = ({ data, removeItem, language }) => {
   let userValue = convert(data.item.userValue, { wordwrap: 0 });
   userValue =
     userValue.length > 30 ? userValue.slice(0, 90) + "..." : userValue;
 
   const alertFunction = () => {
     Alert.alert(
-      "Hold on!",
-      `You have unsaved changes. Are you change and leave the screen?`,
+      `${language === "english" ? "Hold on!" : "দয়া করে থামুন!!!"}`,
+      `${
+        language === "english"
+          ? "Are you sure you want to delete this note?"
+          : "আপনি কি নিশ্চিত যে এই নোটটি ডিলিট করব?"
+      }`,
       [
         {
-          text: "Cancel",
+          text: `${language === "english" ? "Cancel" : "না"}`,
           onPress: () => null,
           style: "cancel",
         },
         {
-          text: "YES",
+          text: `${language === "english" ? "YES" : "হ্যাঁ, ডিলিট করব"}`,
           onPress: () => {
             removeItem(data.item.id);
           },

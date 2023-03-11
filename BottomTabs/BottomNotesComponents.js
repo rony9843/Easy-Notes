@@ -1,7 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import React, { useLayoutEffect } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import AddNotes from "../Screens/AddNotes";
 import NotesScreen from "../Screens/NotesScreen";
+import { languageContext } from "./BottomTabs";
 
 const Stack = createStackNavigator();
 
@@ -12,6 +13,8 @@ const BottomNotesComponents = ({ navigation, route }) => {
   const [contextCard, setContextCard] = React.useState({
     newUserValue: "",
   });
+
+  const [language, setLanguage] = useContext(languageContext);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -30,7 +33,7 @@ const BottomNotesComponents = ({ navigation, route }) => {
             },
           ]}
           options={{
-            title: "Notes",
+            title: ` ${language === "english" ? "Notes" : "নোট"} `,
 
             headerTintColor: "#F79E89",
             // headerStyle: {

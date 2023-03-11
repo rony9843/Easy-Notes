@@ -18,6 +18,7 @@ import {
 } from "react-native-pell-rich-editor";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import { UserInfoContext } from "../BottomTabs/BottomNotesComponents";
+import { languageContext } from "../BottomTabs/BottomTabs";
 import GetById from "../Utils/GetById";
 import UpdateValue from "../Utils/UpdateValue";
 import SetUserValue from "./../Utils/SetUserValue";
@@ -27,6 +28,7 @@ const { convert } = require("html-to-text");
 const AddNotes = ({ navigation, route }) => {
   // ? context state
   const [_, setContextCard] = useContext(UserInfoContext);
+  const [language, setLanguage] = useContext(languageContext);
 
   const [userInput, setUserInput] = useState("");
   const [userOldInput, setUserOldInput] = useState("");
@@ -73,11 +75,17 @@ const AddNotes = ({ navigation, route }) => {
 
   const alertFunction = () => {
     Alert.alert(
-      "Hold on!",
-      `You have unsaved changes. Are you change and leave the screen?`,
+      `${language === "english" ? "Hold on!" : "দয়া করে থামুন!!!"}`,
+      `${
+        language === "english"
+          ? "You have unsaved changes. Are you change and leave the screen?"
+          : `আপনি কিছু লেখা যুক্ত করেছেন । আপনি কি এটি ${
+              mode === true ? "আপডেট" : "সেভ"
+            } করতে চান?`
+      }`,
       [
         {
-          text: "Cancel",
+          text: `${language === "english" ? "Cancel" : "না"}`,
           onPress: () => {
             // navigation.navigate("Notes Screen", [
             //   {
@@ -91,7 +99,11 @@ const AddNotes = ({ navigation, route }) => {
           style: "cancel",
         },
         {
-          text: "YES",
+          text: `${
+            language === "english"
+              ? "YES"
+              : `হ্যাঁ, ${mode === true ? "আপডেট" : "সেভ"} করতে চাই`
+          }`,
           onPress: () => {
             mode === false ? saveItem() : updateFunctionCall();
 
@@ -164,7 +176,7 @@ const AddNotes = ({ navigation, route }) => {
                 />
               </View>
 
-              <Text>Back</Text>
+              <Text>{language === "english" ? "Back" : "পিছে"}</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity
@@ -174,7 +186,9 @@ const AddNotes = ({ navigation, route }) => {
             }}
           >
             <Text style={{ color: "white", fontWeight: "bold" }}>
-              {mode ? "Update" : "  Save"}
+              {mode
+                ? ` ${language === "english" ? "Update" : "আপডেট"}`
+                : `${language === "english" ? "Save" : "সেভ"}`}
             </Text>
           </TouchableOpacity>
         </View>

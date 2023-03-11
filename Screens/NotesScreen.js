@@ -9,6 +9,7 @@ import {
 import * as Animatable from "react-native-animatable";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import { UserInfoContext } from "../BottomTabs/BottomNotesComponents";
+import { languageContext } from "../BottomTabs/BottomTabs";
 import NoteCard from "../Ui/NoteCard";
 import GetUserValue from "../Utils/GetUserValue";
 import RemoveOneById from "../Utils/RemoveOneById";
@@ -16,9 +17,11 @@ import RemoveOneById from "../Utils/RemoveOneById";
 const NotesScreen = ({ navigation, route }) => {
   // ? context state
   const [contextCard, setContextCard] = useContext(UserInfoContext);
+  const [language, setLanguage] = useContext(languageContext);
 
   const [notes, setNotes] = useState([]);
 
+  // * comment -->
   useEffect(() => {
     // DeleteAllValue()
 
@@ -49,7 +52,11 @@ const NotesScreen = ({ navigation, route }) => {
                 })
               }
             >
-              <NoteCard removeItem={removeItem} data={data}></NoteCard>
+              <NoteCard
+                language={language}
+                removeItem={removeItem}
+                data={data}
+              ></NoteCard>
             </Pressable>
           )}
           keyExtractor={(item) => item.id}
