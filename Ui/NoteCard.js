@@ -13,7 +13,7 @@ const NoteCard = ({ data, removeItem, language }) => {
       `${
         language === "english"
           ? "Are you sure you want to delete this note?"
-          : "আপনি কি নিশ্চিত যে এই নোটটি ডিলিট করব?"
+          : "আপনি কি নিশ্চিত যে এই নোটটি ডিলিট করবেন?"
       }`,
       [
         {

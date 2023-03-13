@@ -44,7 +44,9 @@ const BottomTabsComponents = () => {
       >
         <Tab.Screen
           options={{
-            title: ` ${language === "english" ? "Notes" : "নোট"} `,
+            title: `${language === "english" ? "Notes" : "নোট"} `,
+
+            //   title: `Notes`,
             tabBarIcon: ({ size, focused, color }) => {
               return (
                 <View>
@@ -66,6 +68,7 @@ const BottomTabsComponents = () => {
         <Tab.Screen
           options={{
             title: ` ${language === "english" ? "Setting" : "সেটিং"} `,
+            //   title: `Setting`,
             tabBarIcon: ({ size, focused, color }) => {
               return (
                 <View>
@@ -80,12 +83,17 @@ const BottomTabsComponents = () => {
               );
             },
             headerTintColor: "#F79E89",
-            // tabBarStyle : {display : "none"}
+            //  tabBarStyle: { display: "none" },
           }}
           name={"Setting"}
           component={BottomSettingComponents}
         />
       </Tab.Navigator>
+
+      {/**   <Tab.Navigator initialRouteName="Home">
+        <Tab.Screen name="Home" component={Test_Screen} />
+        <Tab.Screen name="Setting" component={Test_Screen} />
+      </Tab.Navigator> */}
     </languageContext.Provider>
   );
 };

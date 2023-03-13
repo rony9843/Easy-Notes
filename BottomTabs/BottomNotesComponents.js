@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import AddNotes from "../Screens/AddNotes";
 import NotesScreen from "../Screens/NotesScreen";
 import { languageContext } from "./BottomTabs";
@@ -16,7 +16,7 @@ const BottomNotesComponents = ({ navigation, route }) => {
 
   const [language, setLanguage] = useContext(languageContext);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     navigation.setOptions({
       tabBarVisible: false,
     });
@@ -45,7 +45,7 @@ const BottomNotesComponents = ({ navigation, route }) => {
         />
         <Stack.Screen
           options={{
-            presentation: "modal",
+            //  presentation: "modal",
             headerShown: false,
           }}
           name={"Add Note"}

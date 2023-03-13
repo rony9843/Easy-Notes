@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { StyleSheet } from "react-native";
-import BottomTabsComponents from "./BottomTabs/BottomTabs";
+import BottomTabs from "./BottomTabs/BottomTabs";
 
 export default function App() {
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <NavigationContainer style={styles.container}>
-      <BottomTabsComponents></BottomTabsComponents>
+      <BottomTabs></BottomTabs>
       <StatusBar style="auto" />
     </NavigationContainer>
   );

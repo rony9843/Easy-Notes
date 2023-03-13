@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-const Test_Screen = () => {
+const Test_Screen = ({ route }) => {
   return (
     <View
       style={{
@@ -11,7 +11,7 @@ const Test_Screen = () => {
         alignItems: "center",
       }}
     >
-      <Text>Test_Screen</Text>
+      <Text>Test_Screen {route.name}</Text>
     </View>
   );
 };
